@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface FacturaMapper {
 
-    Factura dtoToFactura(FacturaDto facturaDto);
+  //  Factura dtoToFactura(FacturaDto facturaDto);
 
     FacturaDto facturaToDto(Factura factura);
 

@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface FacturaService {
 
-    List<FacturaDto> buscarFacturas(Integer id);
+    List<Factura> buscarFacturas(Integer id);
 }

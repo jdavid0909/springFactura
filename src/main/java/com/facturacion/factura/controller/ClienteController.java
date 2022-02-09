@@ -1,9 +1,8 @@
 package com.facturacion.factura.controller;
 
-
+import com.facturacion.factura.dto.ClienteDto;
 import com.facturacion.factura.dto.FacturaDto;
-import com.facturacion.factura.model.Factura;
-import com.facturacion.factura.service.FacturaService;
+import com.facturacion.factura.service.ClienteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,17 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/facturas")
+@RequestMapping(path = "/clientes")
 @RequiredArgsConstructor
-public class FacturaController {
+public class ClienteController {
 
     @Autowired
-    private FacturaService facturaService;
+    private ClienteService clienteService;
 
     @GetMapping("{Id}")
-    public ResponseEntity<List<Factura>> getProduct(@PathVariable("Id") int facturaId){
+    public ResponseEntity<List<ClienteDto>> getProduct(@PathVariable("Id") int clienteId){
 
-        List<Factura> list = facturaService.buscarFacturas(facturaId);
-         return new ResponseEntity<>(list, HttpStatus.OK);
+        List<ClienteDto> list = clienteService.buscarFacturas(clienteId);
+        return  new ResponseEntity<>(clienteService.buscarFacturas(clienteId), HttpStatus.OK);
     }
 }

@@ -13,7 +13,7 @@ public interface ClienteMapper {
 
     ClienteDto clienteToDto(Cliente cliente);
 
-    List<Cliente> dtoToCliente(List<ClienteDto> clienteDtos);
+     List<Cliente> dtoToCliente(List<ClienteDto> clienteDtos);
 
     List<ClienteDto> clienteToDto(List<Cliente> clientes);
 }

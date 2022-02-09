@@ -23,11 +23,12 @@ public class FacturaImplementation implements FacturaService {
     private FacturaMapper facturaMapper;
 
     @Override
-    public List<FacturaDto> buscarFacturas(Integer id) {
+    public List<Factura> buscarFacturas(Integer id) {
         List<FacturaDto> facturaDtos;
+        List<Factura> facturas =facturaRepository.BuscarFacturas(id);
         facturaDtos = facturaMapper
                 .facturaToDto(facturaRepository.BuscarFacturas(id));
-            return  new ArrayList<>(facturaDtos);
+            return facturas;
 
     }
 }
