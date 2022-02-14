@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
+
 @JsonSerialize
 @Builder
 @Getter
@@ -33,7 +35,7 @@ public class FacturaDto  {
     private double status;
 
     @JsonProperty
-    private LocalDateTime date;
+    private Date date;
 
 
     private Cliente cliente;
@@ -62,11 +64,11 @@ public class FacturaDto  {
         this.status = status;
     }
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

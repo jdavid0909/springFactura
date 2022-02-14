@@ -8,13 +8,14 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
-@Table(name = "t_invoice")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Table(name = "t_invoice")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Factura {
 
@@ -30,7 +31,7 @@ public class Factura {
     private double status;
 
     @Column(name = "added_date")
-    private LocalDateTime date;
+    private Date date;
 
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
@@ -70,11 +71,11 @@ public class Factura {
         this.status = status;
     }
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

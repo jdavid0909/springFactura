@@ -36,50 +36,7 @@ public class ClienteImplementation implements ClienteService {
 
         return clienteDtos;
     }
-/*
-    @Override
-    public Page<ClienteDto> findPaginatedSortedCustomer(Integer customerId, int page, int size) {
 
-      //  List<Sort.Order> orders = sortingPagingUtils.getSortOrders(sort);
-        Pageable pageable = PageRequest.of(page, size);
-        List<ClienteDto> customerDto;
-
-        if(customerId == null){
-            customerDto = clienteMapper.toClienteDto(clienteRepository.findAll(pageable).toList());
-
-        } else {
-            customerDto = clienteMapper.toClienteDto(clienteRepository.findByClienteId(customerId,pageable).toList());
-        }
-        return new PageImpl<>(customerDto);
-    }
-
-  /*  @Override
-    public List<ClienteDto> buscarFacturas(Integer id) {
-        List<ClienteDto> clienteDtos;
-        clienteDtos = clienteMapper
-                .toClienteDto(clienteRepository.findByClienteId(id,));
-        return  clienteDtos;
-
-    }
-    */
-
-    /*
-    @Override
-    public Page<ClienteDto> getAllClienteFacturas(Integer id, int page, int size, String[] sort) {
-        List<Sort.Order> orders = sortingPagingUtils.getSortOrders(sort);
-        Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
-        List<ClienteDto> clienteDtos;
-        if(id == null) {
-            clienteDtos = clienteMapper
-                    .toClienteDto(clienteRepository.findAll(pageable).toList());
-        } else {
-            clienteDtos = clienteMapper
-                    .toClienteDto(clienteRepository
-                            .findByClienteId(id, pageable).toList());
-        }
-        return new PageImpl<>(clienteDtos);
-    }
-    */
     @Override
     public Page<ClienteDto> findPaginatedSortedCustomer(Integer clienteId, int page, int size, String[] sort) {
 
@@ -91,8 +48,6 @@ public class ClienteImplementation implements ClienteService {
             customerDto = clienteMapper.toClienteDto(clienteRepository.findAll(pageable).toList());
 
         } else {
-            System.out.println(((Object)clienteId).getClass().getSimpleName());
-            System.out.println(clienteId);
             customerDto = clienteMapper.toClienteDto(clienteRepository.findByClienteId(clienteId,pageable).toList());
         }
         return new PageImpl<>(customerDto);
