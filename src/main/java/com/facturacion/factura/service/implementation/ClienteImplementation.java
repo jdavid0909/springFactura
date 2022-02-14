@@ -7,26 +7,95 @@ import com.facturacion.factura.model.Factura;
 import com.facturacion.factura.model.mapper.ClienteMapper;
 import com.facturacion.factura.repository.ClienteRepository;
 import com.facturacion.factura.service.ClienteService;
+import com.facturacion.factura.utils.SortingPagingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ClienteImplementation implements ClienteService {
     @Autowired
-    private ClienteMapper clienteMapper;
+    private final SortingPagingUtils sortingPagingUtils;
 
-    @Autowired
-    private ClienteRepository clienteRepository;
+    private final ClienteMapper clienteMapper;
+
+
+    private final ClienteRepository clienteRepository;
 
     @Override
+    public List<ClienteDto> getAllEmployees( Integer pageNo, Integer pageSize, String sortBy)
+    {
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+
+        List<ClienteDto> clienteDtos;
+        clienteDtos = clienteMapper.toClienteDto(clienteRepository.findAll(paging).toList());
+
+        return clienteDtos;
+    }
+/*
+    @Override
+    public Page<ClienteDto> findPaginatedSortedCustomer(Integer customerId, int page, int size) {
+
+      //  List<Sort.Order> orders = sortingPagingUtils.getSortOrders(sort);
+        Pageable pageable = PageRequest.of(page, size);
+        List<ClienteDto> customerDto;
+
+        if(customerId == null){
+            customerDto = clienteMapper.toClienteDto(clienteRepository.findAll(pageable).toList());
+
+        } else {
+            customerDto = clienteMapper.toClienteDto(clienteRepository.findByClienteId(customerId,pageable).toList());
+        }
+        return new PageImpl<>(customerDto);
+    }
+
+  /*  @Override
     public List<ClienteDto> buscarFacturas(Integer id) {
         List<ClienteDto> clienteDtos;
         clienteDtos = clienteMapper
-                .clienteToDto(clienteRepository.findByClienteId(id));
-        return  new ArrayList<>(clienteDtos);
+                .toClienteDto(clienteRepository.findByClienteId(id,));
+        return  clienteDtos;
 
     }
+    */
+
+    /*
+    @Override
+    public Page<ClienteDto> getAllClienteFacturas(Integer id, int page, int size, String[] sort) {
+        List<Sort.Order> orders = sortingPagingUtils.getSortOrders(sort);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
+        List<ClienteDto> clienteDtos;
+        if(id == null) {
+            clienteDtos = clienteMapper
+                    .toClienteDto(clienteRepository.findAll(pageable).toList());
+        } else {
+            clienteDtos = clienteMapper
+                    .toClienteDto(clienteRepository
+                            .findByClienteId(id, pageable).toList());
+        }
+        return new PageImpl<>(clienteDtos);
+    }
+    */
+    @Override
+    public Page<ClienteDto> findPaginatedSortedCustomer(Integer clienteId, int page, int size, String[] sort) {
+
+        List<Sort.Order> orders = sortingPagingUtils.getSortOrders(sort);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(orders));
+        List<ClienteDto> customerDto;
+
+        if(clienteId == 0){
+            customerDto = clienteMapper.toClienteDto(clienteRepository.findAll(pageable).toList());
+
+        } else {
+            System.out.println(((Object)clienteId).getClass().getSimpleName());
+            System.out.println(clienteId);
+            customerDto = clienteMapper.toClienteDto(clienteRepository.findByClienteId(clienteId,pageable).toList());
+        }
+        return new PageImpl<>(customerDto);
+    }
+
 }

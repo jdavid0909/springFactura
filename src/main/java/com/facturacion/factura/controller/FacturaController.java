@@ -24,9 +24,9 @@ public class FacturaController {
     private FacturaService facturaService;
 
     @GetMapping("{Id}")
-    public ResponseEntity<List<Factura>> getProduct(@PathVariable("Id") int facturaId){
+    public ResponseEntity<List<FacturaDto>> getProduct(@PathVariable("Id") int facturaId){
 
-        List<Factura> list = facturaService.buscarFacturas(facturaId);
+        List<FacturaDto> list = facturaService.buscarFacturas(facturaId);
          return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }

@@ -1,8 +1,11 @@
 package com.facturacion.factura.repository;
 
 import com.facturacion.factura.model.Cliente;
-import com.facturacion.factura.model.Factura;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +14,11 @@ import java.util.List;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
-     //  @Query(value = "select * from t_invoice As a inner join t_customer As c on c.id_customer = a.id_customer where a.id_customer = ?",nativeQuery = true)
-      //  List<Cliente> BuscarFacturasCliente(Integer id);
-
-        List<Cliente> findByClienteId(Integer clienteId);
+    // @Query(value = "select * from t_customer As c inner join t_invoice As a on a.id_customer = c.id_customer where c.id_customer = :id",nativeQuery = true)
+    Page<Cliente> findByClienteId(Integer clienteId, Pageable pageable);
+   // Page<Customer> findByCustomerIdContaining(String customerId, Pageable pageable);
+     //List<Cliente> findByClienteId(Integer clienteId);
+  // Page<Cliente> findByClienteIdContaining(Integer clienteId, Pageable pageable);
+  // @Query(value = "select * from t_customer As c inner join t_invoice As a on a.id_customer = c.id_customer where c.id_customer = :id",nativeQuery = true)
+   Page<Cliente> findByClienteIdContaining(Integer id, Pageable pageable);
 }

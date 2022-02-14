@@ -12,6 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface FacturaRepository extends JpaRepository<Factura,Integer> {
-        @Query(value = "select distinct a.added_date, a.id_invoice, c.customer_name, c.id_customer, a.status, a.invoice_code from t_customer As c inner join t_invoice As a on c.id_customer = a.id_customer where c.id_customer = ?",nativeQuery = true)
+        @Query(value = "select * from t_invoice As a inner join t_customer As c on c.id_customer = a.id_customer where a.id_customer = ?",nativeQuery = true)
         List<Factura> BuscarFacturas(Integer id);
 }

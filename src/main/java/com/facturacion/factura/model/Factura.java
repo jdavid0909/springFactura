@@ -1,18 +1,21 @@
 package com.facturacion.factura.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Table(name = "t_invoice")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Table(name = "t_invoice")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Factura {
 
     @Id
@@ -29,9 +32,49 @@ public class Factura {
     @Column(name = "added_date")
     private LocalDateTime date;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = { CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST})
+
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "id_customer")
     private Cliente cliente;
 
+    @JsonBackReference
+    public Cliente getCliente() {
+        return cliente;
+    }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Integer getInvoiceId() {
+        return invoiceId;
+    }
+
+    public void setInvoiceId(Integer invoiceId) {
+        this.invoiceId = invoiceId;
+    }
+
+    public String getInvoiceCode() {
+        return invoiceCode;
+    }
+
+    public void setInvoiceCode(String invoiceCode) {
+        this.invoiceCode = invoiceCode;
+    }
+
+    public double getStatus() {
+        return status;
+    }
+
+    public void setStatus(double status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
 }
