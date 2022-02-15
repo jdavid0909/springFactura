@@ -21,9 +21,10 @@ public class ClienteImplementation implements ClienteService {
     @Autowired
     private final SortingPagingUtils sortingPagingUtils;
 
+    @Autowired
     private final ClienteMapper clienteMapper;
 
-
+    @Autowired
     private final ClienteRepository clienteRepository;
 
     @Override
@@ -51,6 +52,15 @@ public class ClienteImplementation implements ClienteService {
             customerDto = clienteMapper.toClienteDto(clienteRepository.findByClienteId(clienteId,pageable).toList());
         }
         return new PageImpl<>(customerDto);
+    }
+
+
+    @Override
+    public ClienteDto save(ClienteDto clienteDto){
+        Cliente cliente = clienteMapper.toCliente(clienteDto);
+        clienteRepository.save(cliente);
+        return clienteMapper.toClienteDto(cliente);
+
     }
 
 }

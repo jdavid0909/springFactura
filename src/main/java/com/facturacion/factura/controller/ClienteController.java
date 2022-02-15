@@ -2,6 +2,7 @@ package com.facturacion.factura.controller;
 
 import com.facturacion.factura.dto.ClienteDto;
 import com.facturacion.factura.dto.FacturaDto;
+import com.facturacion.factura.dto.ProductoDto;
 import com.facturacion.factura.dto.openapi.PageResponseClienteDto;
 import com.facturacion.factura.dto.pegeable.PageResponse;
 import com.facturacion.factura.dto.pegeable.PageResponseDto;
@@ -76,6 +77,11 @@ public class ClienteController {
         PageResponseDto<ClienteDto> pageResponseDto = new PageResponseDto<>();
         return pageResponseDto.buildResponseEntity(customerDtoPage.getSize(), customerDtoPage.getNumberOfElements(),
                 customerDtoPage.getTotalPages(), customerDtoPage.getNumber(), customerDtoPage.getContent());
+    }
+
+    @PostMapping
+    public ResponseEntity<ClienteDto> save(@RequestBody ClienteDto clienteDto){
+        return new ResponseEntity<>(clienteService.save(clienteDto),HttpStatus.CREATED);
     }
 
 

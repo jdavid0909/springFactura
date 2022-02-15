@@ -2,6 +2,8 @@ package com.facturacion.factura.service.implementation;
 
 import com.facturacion.factura.dto.ClienteDto;
 import com.facturacion.factura.dto.ProductoDto;
+import com.facturacion.factura.model.Cliente;
+import com.facturacion.factura.model.Producto;
 import com.facturacion.factura.model.mapper.ProductoMapper;
 import com.facturacion.factura.repository.ProductoRepository;
 import com.facturacion.factura.service.ProductoService;
@@ -37,5 +39,12 @@ public class ProductoImplementation implements ProductoService {
             productoDtos = productoMapper.productoToDto(productoRepository.concidenciaProductos(nombre,pageable).toList());
         }
         return new PageImpl<>(productoDtos);
+    }
+
+    @Override
+    public ProductoDto save(ProductoDto productoDto) {
+        Producto producto = productoMapper.dtoToProdcuto(productoDto);
+        productoRepository.save(producto);
+        return productoMapper.productoToDto(producto);
     }
 }

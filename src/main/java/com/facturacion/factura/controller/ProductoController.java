@@ -1,5 +1,6 @@
 package com.facturacion.factura.controller;
 
+import com.facturacion.factura.dto.ClienteDto;
 import com.facturacion.factura.dto.FacturaDto;
 import com.facturacion.factura.dto.ProductoDto;
 import com.facturacion.factura.dto.pegeable.PageResponse;
@@ -8,11 +9,9 @@ import com.facturacion.factura.service.ProductoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,5 +39,9 @@ public class ProductoController {
         PageResponseDto<ProductoDto> pageResponseDto = new PageResponseDto<>();
         return pageResponseDto.buildResponseEntity(productoDtos.getSize(), productoDtos.getNumberOfElements(),
                 productoDtos.getTotalPages(), productoDtos.getNumber(), productoDtos.getContent());
+    }
+    @PostMapping
+    public ResponseEntity<ProductoDto> save(@RequestBody ProductoDto productoDto){
+        return new ResponseEntity<>(productoService.save(productoDto), HttpStatus.CREATED);
     }
 }

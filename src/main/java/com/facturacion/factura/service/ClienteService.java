@@ -15,5 +15,7 @@ public interface ClienteService {
   Page<ClienteDto> findPaginatedSortedCustomer(Integer clienteId, int page, int size, String[] sort);
   List<ClienteDto> getAllEmployees(Integer pageNo, Integer pageSize, String sortBy);
 
+  ClienteDto save(ClienteDto clienteDto);
+
 
 }

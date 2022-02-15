@@ -33,7 +33,15 @@ public class ProductoDto {
     @JsonProperty
     private LocalDateTime fecha;
 
-    //private DetalleFactura detalleFactura;
+    private DetalleFactura detalleFactura;
+
+    public DetalleFactura getDetalleFactura() {
+        return detalleFactura;
+    }
+
+    public void setDetalleFactura(DetalleFactura detalleFactura) {
+        this.detalleFactura = detalleFactura;
+    }
 
     public int getProductoId() {
         return productoId;
