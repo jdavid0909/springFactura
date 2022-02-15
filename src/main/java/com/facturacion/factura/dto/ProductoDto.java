@@ -33,7 +33,7 @@ public class ProductoDto {
     @JsonProperty
     private LocalDateTime fecha;
 
-    private DetalleFactura detalleFactura;
+    //private DetalleFactura detalleFactura;
 
     public int getProductoId() {
         return productoId;
@@ -75,11 +75,5 @@ public class ProductoDto {
         this.fecha = fecha;
     }
 
-    public DetalleFactura getDetalleFactura() {
-        return detalleFactura;
-    }
 
-    public void setDetalleFactura(DetalleFactura detalleFactura) {
-        this.detalleFactura = detalleFactura;
-    }
 }
