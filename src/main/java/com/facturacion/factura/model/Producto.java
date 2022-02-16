@@ -1,5 +1,6 @@
 package com.facturacion.factura.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -35,6 +36,7 @@ public class Producto {
     @Column(name = "added_date")
     private LocalDateTime fecha;
 
+    @JsonIgnore
     @OneToMany(cascade =  CascadeType.ALL,mappedBy = "producto", fetch = FetchType.LAZY)
     List<DetalleFactura> detalleFacturas;
 

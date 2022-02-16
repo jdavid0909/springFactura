@@ -1,5 +1,6 @@
 package com.facturacion.factura.dto;
 
+import com.facturacion.factura.model.Factura;
 import com.facturacion.factura.model.Producto;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
@@ -28,8 +29,25 @@ public class DetalleFacturaDto {
     private boolean status;
     private LocalDateTime date;
 
-    List<Producto> productos;
+    Producto producto;
 
+    Factura factura;
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
 
     public int getDetalleId() {
         return detalleId;
@@ -119,11 +137,5 @@ public class DetalleFacturaDto {
         this.date = date;
     }
 
-    public List<Producto> getProductos() {
-        return productos;
-    }
 
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
-    }
 }

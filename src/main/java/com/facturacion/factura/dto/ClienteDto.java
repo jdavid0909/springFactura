@@ -2,6 +2,7 @@ package com.facturacion.factura.dto;
 
 import com.facturacion.factura.model.Cliente;
 import com.facturacion.factura.model.Factura;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

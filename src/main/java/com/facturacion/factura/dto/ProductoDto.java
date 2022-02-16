@@ -1,6 +1,7 @@
 package com.facturacion.factura.dto;
 
 import com.facturacion.factura.model.DetalleFactura;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @JsonSerialize
 @Builder
@@ -33,14 +35,15 @@ public class ProductoDto {
     @JsonProperty
     private LocalDateTime fecha;
 
-    private DetalleFactura detalleFactura;
+    @JsonIgnore
+    List<DetalleFactura> detalleFacturas;
 
-    public DetalleFactura getDetalleFactura() {
-        return detalleFactura;
+    public List<DetalleFactura> getDetalleFacturas() {
+        return detalleFacturas;
     }
 
-    public void setDetalleFactura(DetalleFactura detalleFactura) {
-        this.detalleFactura = detalleFactura;
+    public void setDetalleFacturas(List<DetalleFactura> detalleFacturas) {
+        this.detalleFacturas = detalleFacturas;
     }
 
     public int getProductoId() {

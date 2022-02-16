@@ -41,6 +41,7 @@ public class Cliente {
     @Column(name = "added_date")
     private LocalDateTime fecha;
 
+
     @OneToMany(cascade =  CascadeType.ALL,mappedBy = "cliente", fetch = FetchType.LAZY)
     List<Factura> facturas;
 

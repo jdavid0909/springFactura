@@ -9,6 +9,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Builder
@@ -33,10 +34,14 @@ public class Factura {
     @Column(name = "added_date")
     private Date date;
 
-
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "id_customer")
     private Cliente cliente;
+
+    @JsonIgnore
+    @OneToMany(cascade =  CascadeType.ALL,mappedBy = "factura", fetch = FetchType.LAZY)
+    List<DetalleFactura> detalleFacturas;
 
     @JsonBackReference
     public Cliente getCliente() {
@@ -45,6 +50,15 @@ public class Factura {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    @JsonManagedReference
+    public List<DetalleFactura> getDetalleFacturas() {
+        return detalleFacturas;
+    }
+
+    public void setDetalleFacturas(List<DetalleFactura> detalleFacturas) {
+        this.detalleFacturas = detalleFacturas;
     }
 
     public Integer getInvoiceId() {

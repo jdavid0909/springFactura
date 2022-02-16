@@ -1,6 +1,7 @@
 package com.facturacion.factura.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,8 +27,8 @@ public class DetalleFactura {
     /*@EmbeddedId
     private DetalleFacturaPK id;
     */
-    @Column(name = "id_invoice")
-    private Integer facturaId;
+   // @Column(name = "id_invoice")
+  //  private Integer facturaId;
 
     @Column(name = "amount")
     private Double cantidad;
@@ -53,9 +54,15 @@ public class DetalleFactura {
     @Column(name = "added_date")
     private LocalDateTime date;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_product")
     private Producto producto;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_invoice")
+    private Factura factura;
 
     @JsonBackReference
     public Producto getProducto() {
@@ -66,6 +73,15 @@ public class DetalleFactura {
         this.producto = producto;
     }
 
+    @JsonBackReference
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
+    }
+
     public int getDetalleId() {
         return detalleId;
     }
@@ -73,15 +89,6 @@ public class DetalleFactura {
     public void setDetalleId(int detalleId) {
         this.detalleId = detalleId;
     }
-
-    public Integer getFacturaId() {
-        return facturaId;
-    }
-
-    public void setFacturaId(Integer facturaId) {
-        this.facturaId = facturaId;
-    }
-
 
     public Double getCantidad() {
         return cantidad;
