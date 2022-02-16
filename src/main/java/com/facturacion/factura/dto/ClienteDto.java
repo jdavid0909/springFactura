@@ -17,11 +17,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 @JsonSerialize
-@Builder
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ClienteDto implements Serializable {
 
     @JsonProperty("id_customer")
@@ -50,8 +45,8 @@ public class ClienteDto implements Serializable {
     @JsonProperty(required = true)
     private LocalDateTime fecha;
 
-
-    List<Factura> facturas ;
+    @JsonProperty
+    private List<Factura> facturas ;
 
     public List<Factura> getFacturas() {
         return facturas;

@@ -35,13 +35,23 @@ public class Factura {
     private Date date;
 
     @JsonIgnore
+    @OneToMany(cascade =  CascadeType.ALL,mappedBy = "factura", fetch = FetchType.LAZY)
+    List<DetalleFactura> detalleFacturas;
+
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "id_customer")
     private Cliente cliente;
 
-    @JsonIgnore
-    @OneToMany(cascade =  CascadeType.ALL,mappedBy = "factura", fetch = FetchType.LAZY)
-    List<DetalleFactura> detalleFacturas;
+    @JsonManagedReference
+    public List<DetalleFactura> getDetalleFacturas() {
+        return detalleFacturas;
+    }
+
+    public void setDetalleFacturas(List<DetalleFactura> detalleFacturas) {
+        this.detalleFacturas = detalleFacturas;
+    }
+
 
     @JsonBackReference
     public Cliente getCliente() {
@@ -52,14 +62,6 @@ public class Factura {
         this.cliente = cliente;
     }
 
-    @JsonManagedReference
-    public List<DetalleFactura> getDetalleFacturas() {
-        return detalleFacturas;
-    }
-
-    public void setDetalleFacturas(List<DetalleFactura> detalleFacturas) {
-        this.detalleFacturas = detalleFacturas;
-    }
 
     public Integer getInvoiceId() {
         return invoiceId;

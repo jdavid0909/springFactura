@@ -13,11 +13,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @JsonSerialize
-@Builder
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class ProductoDto {
 
     @JsonProperty("productoId")
@@ -36,7 +31,7 @@ public class ProductoDto {
     private LocalDateTime fecha;
 
     @JsonIgnore
-    List<DetalleFactura> detalleFacturas;
+    private List<DetalleFactura> detalleFacturas;
 
     public List<DetalleFactura> getDetalleFacturas() {
         return detalleFacturas;

@@ -69,8 +69,7 @@ public class ClienteController {
             @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "nombre, desc") String[] sort) {
 
-        System.out.println(((Object)clienteId).getClass().getSimpleName());
-        System.out.println(clienteId);
+
         Page<ClienteDto> customerDtoPage = clienteService
                 .findPaginatedSortedCustomer(clienteId, page, size, sort);
 

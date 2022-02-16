@@ -6,10 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -21,11 +18,6 @@ import java.util.Date;
 import java.util.List;
 
 @JsonSerialize
-@Builder
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class FacturaDto  {
 
     @JsonProperty("invoiceId")
@@ -43,8 +35,10 @@ public class FacturaDto  {
     @JsonIgnore
     private Cliente cliente;
 
+    @JsonProperty
     @JsonIgnore
     private List<DetalleFactura> detalleFacturas;
+
 
     public List<DetalleFactura> getDetalleFacturas() {
         return detalleFacturas;
