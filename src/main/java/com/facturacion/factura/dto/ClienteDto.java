@@ -20,6 +20,7 @@ import java.util.List;
 public class ClienteDto implements Serializable {
 
     @JsonProperty("id_customer")
+    @JsonIgnore
     private Integer clienteId;
 
     @JsonProperty

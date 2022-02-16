@@ -35,8 +35,7 @@ public class FacturaDto  {
     @JsonIgnore
     private Cliente cliente;
 
-    @JsonProperty
-    @JsonIgnore
+
     private List<DetalleFactura> detalleFacturas;
 
 

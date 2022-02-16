@@ -73,7 +73,7 @@ public class DetalleFactura {
         this.producto = producto;
     }
 
-    @JsonBackReference
+
     public Factura getFactura() {
         return factura;
     }

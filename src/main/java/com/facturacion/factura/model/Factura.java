@@ -17,7 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Table(name = "t_invoice")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Factura {
 
     @Id
@@ -43,7 +42,7 @@ public class Factura {
     @JoinColumn(name = "id_customer")
     private Cliente cliente;
 
-    @JsonManagedReference
+
     public List<DetalleFactura> getDetalleFacturas() {
         return detalleFacturas;
     }
@@ -63,35 +62,5 @@ public class Factura {
     }
 
 
-    public Integer getInvoiceId() {
-        return invoiceId;
-    }
 
-    public void setInvoiceId(Integer invoiceId) {
-        this.invoiceId = invoiceId;
-    }
-
-    public String getInvoiceCode() {
-        return invoiceCode;
-    }
-
-    public void setInvoiceCode(String invoiceCode) {
-        this.invoiceCode = invoiceCode;
-    }
-
-    public double getStatus() {
-        return status;
-    }
-
-    public void setStatus(double status) {
-        this.status = status;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 }

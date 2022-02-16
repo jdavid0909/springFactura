@@ -18,7 +18,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cliente {
 
     @Id
@@ -45,7 +44,7 @@ public class Cliente {
     @OneToMany(cascade =  CascadeType.ALL,mappedBy = "cliente", fetch = FetchType.LAZY)
     List<Factura> facturas;
 
-    @JsonManagedReference
+
     public List<Factura> getFacturas() {
         return facturas;
     }

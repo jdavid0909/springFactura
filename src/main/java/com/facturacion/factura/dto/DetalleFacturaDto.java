@@ -2,6 +2,7 @@ package com.facturacion.factura.dto;
 
 import com.facturacion.factura.model.Factura;
 import com.facturacion.factura.model.Producto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
@@ -14,7 +15,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class DetalleFacturaDto {
 
     private int detalleId;
@@ -29,9 +29,10 @@ public class DetalleFacturaDto {
     private boolean status;
     private LocalDateTime date;
 
-    Producto producto;
+    private Producto producto;
 
-    Factura factura;
+    @JsonIgnore
+    private Factura factura;
 
     public Producto getProducto() {
         return producto;
