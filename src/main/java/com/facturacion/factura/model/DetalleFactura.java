@@ -3,6 +3,7 @@ package com.facturacion.factura.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,13 +12,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
+@JsonSerialize
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Table(name = "t_invoice_detail")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class DetalleFactura {
 
     @Id
@@ -54,15 +56,15 @@ public class DetalleFactura {
     @Column(name = "added_date")
     private LocalDateTime date;
 
-    @JsonIgnore
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_product")
     private Producto producto;
 
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_invoice")
-    private Factura factura;
+    private Factura factura ;
 
     @JsonBackReference
     public Producto getProducto() {
@@ -72,7 +74,6 @@ public class DetalleFactura {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
-
 
     public Factura getFactura() {
         return factura;

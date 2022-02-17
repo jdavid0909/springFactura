@@ -17,6 +17,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 @JsonSerialize
+@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClienteDto implements Serializable {
 
     @JsonProperty("id_customer")
@@ -47,61 +51,10 @@ public class ClienteDto implements Serializable {
     private LocalDateTime fecha;
 
     @JsonProperty
-    private List<Factura> facturas ;
+    @Builder.Default
+    private List<Factura> facturas = new ArrayList<>() ;
 
-    public List<Factura> getFacturas() {
-        return facturas;
-    }
 
-    public void setFacturas(List<Factura> facturas) {
-        this.facturas = facturas;
-    }
 
-    public Integer getClienteId() {
-        return clienteId;
-    }
 
-    public void setClienteId(Integer clienteId) {
-        this.clienteId = clienteId;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public Integer getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(Integer telefono) {
-        this.telefono = telefono;
-    }
-
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
 }

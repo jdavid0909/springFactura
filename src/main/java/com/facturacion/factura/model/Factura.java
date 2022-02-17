@@ -4,13 +4,16 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@JsonSerialize
 @Entity
 @Builder
 @AllArgsConstructor
@@ -33,24 +36,14 @@ public class Factura {
     @Column(name = "added_date")
     private Date date;
 
-    @JsonIgnore
-    @OneToMany(cascade =  CascadeType.ALL,mappedBy = "factura", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @OneToMany(mappedBy ="factura", fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     List<DetalleFactura> detalleFacturas;
 
-    @JsonIgnore
+
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "id_customer")
     private Cliente cliente;
-
-
-    public List<DetalleFactura> getDetalleFacturas() {
-        return detalleFacturas;
-    }
-
-    public void setDetalleFacturas(List<DetalleFactura> detalleFacturas) {
-        this.detalleFacturas = detalleFacturas;
-    }
-
 
     @JsonBackReference
     public Cliente getCliente() {
@@ -62,5 +55,11 @@ public class Factura {
     }
 
 
+    public List<DetalleFactura> getDetalleFacturas() {
+        return detalleFacturas;
+    }
 
+    public void setDetalleFacturas(List<DetalleFactura> detalleFacturas) {
+        this.detalleFacturas = detalleFacturas;
+    }
 }

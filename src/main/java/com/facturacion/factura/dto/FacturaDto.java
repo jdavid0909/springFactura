@@ -14,13 +14,18 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @JsonSerialize
+@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class FacturaDto  {
 
-    @JsonProperty("invoiceId")
+    @JsonProperty("id_invoice")
     private Integer invoiceId;
 
     @JsonProperty
@@ -35,9 +40,17 @@ public class FacturaDto  {
     @JsonIgnore
     private Cliente cliente;
 
+    @JsonIgnore
+    private List<DetalleFactura> detalleFacturas ;
 
-    private List<DetalleFactura> detalleFacturas;
+    @JsonIgnore
+    public Cliente getCliente() {
+        return cliente;
+    }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     public List<DetalleFactura> getDetalleFacturas() {
         return detalleFacturas;
@@ -45,45 +58,5 @@ public class FacturaDto  {
 
     public void setDetalleFacturas(List<DetalleFactura> detalleFacturas) {
         this.detalleFacturas = detalleFacturas;
-    }
-
-    public Integer getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(Integer invoiceId) {
-        this.invoiceId = invoiceId;
-    }
-
-    public String getInvoiceCode() {
-        return invoiceCode;
-    }
-
-    public void setInvoiceCode(String invoiceCode) {
-        this.invoiceCode = invoiceCode;
-    }
-
-    public double getStatus() {
-        return status;
-    }
-
-    public void setStatus(double status) {
-        this.status = status;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 }

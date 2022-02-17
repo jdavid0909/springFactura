@@ -41,64 +41,8 @@ public class Cliente {
     private LocalDateTime fecha;
 
 
-    @OneToMany(cascade =  CascadeType.ALL,mappedBy = "cliente", fetch = FetchType.LAZY)
-    List<Factura> facturas;
+    @OneToMany(mappedBy = "cliente",cascade =  CascadeType.ALL, fetch = FetchType.LAZY,orphanRemoval = true)
+    List<Factura> facturas = new ArrayList<>();
 
-
-    public List<Factura> getFacturas() {
-        return facturas;
-    }
-
-    public void setFacturas(List<Factura> facturas) {
-        this.facturas = facturas;
-    }
-
-    public Integer getClienteId() {
-        return clienteId;
-    }
-
-    public void setClienteId(Integer clienteId) {
-        this.clienteId = clienteId;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public Long getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(Long telefono) {
-        this.telefono = telefono;
-    }
-
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
 
 }
